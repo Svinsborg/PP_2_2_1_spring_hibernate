@@ -37,11 +37,7 @@ public class UserServiceImp implements UserService {
    @Transactional(readOnly = true)
    @Override
    public User getUserByCarId(String model, int series){
-      Session session = sessionFactory.openSession();
-      return session.createQuery("SELECT u FROM User u INNER JOIN FETCH u.carId c WHERE c.model=:m AND c.series=:s", User.class)
-              .setParameter("m",model)
-              .setParameter("s",series)
-              .getSingleResult();
+      return userDao.getUserByCarId(model,series);
    }
 
 }
